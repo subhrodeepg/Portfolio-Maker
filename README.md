@@ -10,3 +10,10 @@ stock performance over time; such as:
 - individuals interested in monitoring a certain sector
 
 I choose this project because I am interested in financial technologies, and I am an amateur investor. 
+
+##User Stories
+
+- As a user, I want to create a portfolio
+- As a user, I want to add a stock to the portfolio
+- As a user, I want to delete a stock from a portfolio
+- As a user, I want to see the number of total number of portfolios and number of stocks within each
