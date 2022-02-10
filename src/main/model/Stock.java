@@ -61,7 +61,7 @@ public class Stock {
         return closingTotal / days;
     }
 
-    public boolean dailyDataAdd(DailyData dailyDataPara) {
+    public boolean addDailyData(DailyData dailyDataPara) {
         for (DailyData dailyData : dailyDataList) {
             if (Objects.equals(dailyData.getDate(), dailyDataPara.getDate())) {
                 return false;

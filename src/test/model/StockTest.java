@@ -2,7 +2,6 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 
 
@@ -10,21 +9,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class StockTest {
     Stock stock;
+
     @BeforeEach
     void run_before(){
         DailyData dailyData = new
                 DailyData(100, 150, 180, 90, "01/07/2022");
-        stock = new Stock(new ArrayList<>(), "AAPL");
-        stock.dailyDataAdd(dailyData);
+        ArrayList<DailyData> dailyDataList = new ArrayList<>();
+        dailyDataList.add(dailyData);
+        stock = new Stock(dailyDataList, "AAPL");
     }
 
     @Test
-    void addListTest(){
+    void addDailyDataTest(){
         DailyData dailyData1 = new
                 DailyData(90, 160, 190, 90, "01/08/2022");
         assertEquals(1, stock.dailyDataLength());
         assertFalse(stock.dateSearch("01/08/2022"));
-        assertTrue(stock.dailyDataAdd(dailyData1));
+        assertTrue(stock.addDailyData(dailyData1));
         assertEquals(2, stock.dailyDataLength());
         assertTrue(stock.dateSearch("01/08/2022"));
     }
@@ -34,10 +35,10 @@ public class StockTest {
         assertEquals(180, stock.maxPrice());
         DailyData dailyData1 = new
                 DailyData(90, 160, 190, 90, "01/08/2022");
-        assertTrue(stock.dailyDataAdd(dailyData1));
+        assertTrue(stock.addDailyData(dailyData1));
         DailyData dailyData2 = new
                 DailyData(90, 160, 180, 90, "01/09/2022");
-        assertTrue(stock.dailyDataAdd(dailyData2));
+        assertTrue(stock.addDailyData(dailyData2));
         assertEquals(190, stock.maxPrice());
     }
 
@@ -46,11 +47,11 @@ public class StockTest {
         assertEquals(90, stock.minPrice());
         DailyData dailyData1 = new
                 DailyData(90, 160, 190, 80, "01/08/2022");
-        assertTrue(stock.dailyDataAdd(dailyData1));
+        assertTrue(stock.addDailyData(dailyData1));
         assertEquals(80, stock.minPrice());
         DailyData dailyData2 = new
                 DailyData(120, 160, 190, 100, "01/09/2022");
-        assertTrue(stock.dailyDataAdd(dailyData2));
+        assertTrue(stock.addDailyData(dailyData2));
         assertEquals(80, stock.minPrice());
     }
 
@@ -59,7 +60,7 @@ public class StockTest {
         assertEquals(150, stock.avgPrice());
         DailyData dailyData1 = new
                 DailyData(90, 160, 190, 80, "01/08/2022");
-        assertTrue(stock.dailyDataAdd(dailyData1));
+        assertTrue(stock.addDailyData(dailyData1));
         assertEquals(155, stock.avgPrice());
     }
 
@@ -69,7 +70,7 @@ public class StockTest {
         assertFalse(stock.dateSearch("01/08/2022"));
         DailyData dailyData1 = new
                 DailyData(90, 160, 190, 80, "01/08/2022");
-        assertTrue(stock.dailyDataAdd(dailyData1));
+        assertTrue(stock.addDailyData(dailyData1));
         assertTrue(stock.dateSearch("01/08/2022"));
     }
 
@@ -77,10 +78,10 @@ public class StockTest {
     void dailyDataAddFailure() {
         DailyData dailyData1 = new
                 DailyData(100, 150, 180, 90, "01/07/2022");
-        assertFalse(stock.dailyDataAdd(dailyData1));
+        assertFalse(stock.addDailyData(dailyData1));
         DailyData dailyData2 = new
                 DailyData(90, 160, 190, 80, "01/08/2022");
-        assertTrue(stock.dailyDataAdd(dailyData2));
+        assertTrue(stock.addDailyData(dailyData2));
 
     }
 
@@ -102,7 +103,7 @@ public class StockTest {
         DailyData dailyData1 = new
                 DailyData(90, 160, 190, 80, "01/08/2022");
 
-        assertTrue(stock.dailyDataAdd(dailyData1));
+        assertTrue(stock.addDailyData(dailyData1));
         dailyData = stock.getDailyDataAtPosition(1);
         assertEquals(90, dailyData.getOpeningPrice());
         assertEquals(160, dailyData.getClosingPrice());
@@ -121,12 +122,10 @@ public class StockTest {
                 DailyData(90, 160, 190, 80, "01/08/2022");
         dailyDataList1.add(dailyData1);
         dailyDataList1.add(dailyData2);
-
         DailyData dailyData3 = new
                 DailyData(90, 160, 190, 80, "01/08/2022");
-        assertTrue(stock.dailyDataAdd(dailyData3));
+        assertTrue(stock.addDailyData(dailyData3));
         ArrayList<DailyData> dailyDataListFromStock = stock.getDailyData();
-
         for(int i = 0; i < stock.dailyDataLength(); i++) {
             DailyData dailyDataFromStock;
             DailyData dailyDataFromTestStock;
@@ -139,6 +138,5 @@ public class StockTest {
             assertEquals(dailyDataFromTestStock.getMinPrice(), dailyDataFromStock.getMinPrice());
             assertEquals(dailyDataFromTestStock.getDate(), dailyDataFromStock.getDate());
         }
-
     }
 }
