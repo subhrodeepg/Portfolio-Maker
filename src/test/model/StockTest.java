@@ -13,7 +13,7 @@ public class StockTest {
     @BeforeEach
     void run_before(){
         DailyData dailyData = new
-                DailyData(100, 150, 180, 90, "01/07/2022");
+                DailyData(100.75, 150, 180, 90, "01/07/2022");
         ArrayList<DailyData> dailyDataList = new ArrayList<>();
         dailyDataList.add(dailyData);
         stock = new Stock(dailyDataList, "AAPL");
@@ -94,7 +94,7 @@ public class StockTest {
     void getDailyDataAtPositionTest() {
         DailyData dailyData;
         dailyData = stock.getDailyDataAtPosition(0);
-        assertEquals(100, dailyData.getOpeningPrice());
+        assertEquals(100.75, dailyData.getOpeningPrice());
         assertEquals(150, dailyData.getClosingPrice());
         assertEquals(180, dailyData.getMaxPrice());
         assertEquals(90, dailyData.getMinPrice());
@@ -117,7 +117,7 @@ public class StockTest {
     void getDailyDataTest() {
         ArrayList<DailyData> dailyDataList1 = new ArrayList<>();
         DailyData dailyData1 = new
-                DailyData(100, 150, 180, 90, "01/07/2022");
+                DailyData(100.75, 150, 180, 90, "01/07/2022");
         DailyData dailyData2 = new
                 DailyData(90, 160, 190, 80, "01/08/2022");
         dailyDataList1.add(dailyData1);

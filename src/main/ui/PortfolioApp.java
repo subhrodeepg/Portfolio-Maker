@@ -61,7 +61,7 @@ public class PortfolioApp {
     //MODIFIES: this
     //EFFECTS: Deletes a stock from a portfolio, if the stock exists. Or returns error message.
     private void deleteStock() {
-        System.out.println("\nWhich portfolio do you want to add the stock to: ");
+        System.out.println("\nWhich portfolio do you want to delete the stock from: ");
         System.out.println("\n" + portfolioList.getAllCategories());
         System.out.println("\n Enter a number (Enter 0 to go back): ");
         int command;
@@ -129,13 +129,13 @@ public class PortfolioApp {
         System.out.println("Enter a ticker symbol for a stock which will be include in the portfolio: ");
         String stockTicker = input.next();
         System.out.println("Enter the last opening price: ");
-        int openingPrice = input.nextInt();
+        double openingPrice = input.nextDouble();
         System.out.println("Enter the last closing price: ");
-        int closingPrice = input.nextInt();
+        double closingPrice = input.nextDouble();
         System.out.println("Enter the maximum price from the previous trading day: ");
-        int maxPrice = input.nextInt();
+        double maxPrice = input.nextDouble();
         System.out.println("Enter the minimum price from the previous trading day: ");
-        int minPrice = input.nextInt();
+        double minPrice = input.nextDouble();
         System.out.println("Enter the date for the previous trading day (MM/DD/YYYY): ");
         String date = input.next();
 

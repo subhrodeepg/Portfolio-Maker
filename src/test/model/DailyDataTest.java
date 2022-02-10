@@ -9,7 +9,7 @@ class DailyDataTest {
 
     @BeforeEach
     void setup() {
-        dailyData = new DailyData(100, 150, 150, 90, "01/07/2022");
+        dailyData = new DailyData(100.50, 150, 150, 90, "01/07/2022");
     }
 
     @Test
@@ -24,7 +24,7 @@ class DailyDataTest {
 
     @Test
     void getOpeningPriceTest() {
-        assertEquals(100, dailyData.getOpeningPrice());
+        assertEquals(100.50, dailyData.getOpeningPrice());
     }
 
     @Test

@@ -3,10 +3,10 @@ package model;
 //DailyData contains opening price, closing price, maximum price the stock reached, and minimum price the stock
 // reached for the date.
 public class DailyData {
-    private int openingPrice;
-    private int closingPrice;
-    private int maxPrice;
-    private int minPrice;
+    private double openingPrice;
+    private double closingPrice;
+    private double maxPrice;
+    private double minPrice;
     private String date;
 
     //REQUIRES: Non-negative prices for opening price, closing price, maximum price and minimum price.
@@ -14,7 +14,7 @@ public class DailyData {
     //EFFECTS: Opening price is set to opening price for the date. Closing price is set to closing price for the date.
     //Maximum price is set to maximum price for the date. Minimum price is set to minimum price for the date.
     //Date is set to the date for the all prices.
-    public DailyData(int openingPrice, int closingPrice, int maxPrice, int minPrice, String date) {
+    public DailyData(double openingPrice, double closingPrice, double maxPrice, double minPrice, String date) {
         this.openingPrice = openingPrice;
         this.closingPrice = closingPrice;
         this.maxPrice = maxPrice;
@@ -23,22 +23,22 @@ public class DailyData {
     }
 
     //EFFECTS: Returns the maximum price the stock reached for the day.
-    public int getMaxPrice() {
+    public double getMaxPrice() {
         return maxPrice;
     }
 
     //EFFECTS: Returns the minimum price the stock reached for the day.
-    public int getMinPrice() {
+    public double getMinPrice() {
         return minPrice;
     }
 
     //EFFECTS: Returns the opening price for the day.
-    public int getOpeningPrice() {
+    public double getOpeningPrice() {
         return openingPrice;
     }
 
     //EFFECTS: Returns the closing price for the day.
-    public int getClosingPrice() {
+    public double getClosingPrice() {
         return closingPrice;
     }
 
@@ -49,7 +49,7 @@ public class DailyData {
 
     //MODIFIES: this
     //EFFECTS: Changes the maximum price if the price is higher than the current maximum.
-    public boolean setMaxPrice(int maxPrice) {
+    public boolean setMaxPrice(double maxPrice) {
         if (maxPrice > this.maxPrice) {
             this.maxPrice = maxPrice;
             return true;
@@ -61,7 +61,7 @@ public class DailyData {
 
     //MODIFIES: this
     //EFFECTS: Changes the minimum price if the price is lower than the current maximum.
-    public boolean setMinPrice(int minPrice) {
+    public boolean setMinPrice(double minPrice) {
         if (minPrice < this.minPrice) {
             this.minPrice = minPrice;
             return true;
@@ -72,13 +72,13 @@ public class DailyData {
 
     //MODIFIES: this
     //EFFECTS: Changes the opening price.
-    public void setOpeningPrice(int openingPrice) {
+    public void setOpeningPrice(double openingPrice) {
         this.openingPrice = openingPrice;
     }
 
     //MODIFIES: this
     //EFFECTS: Changes the closing price.
-    public void setClosingPrice(int closingPrice) {
+    public void setClosingPrice(double closingPrice) {
         this.closingPrice = closingPrice;
     }
 

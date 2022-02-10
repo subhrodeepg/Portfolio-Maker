@@ -35,8 +35,8 @@ public class Stock {
 
     //REQUIRES: size of dailyData > 0
     //EFFECTS: returns the highest price the stock has reached
-    public int maxPrice() {
-        int max = Integer.MIN_VALUE;
+    public double maxPrice() {
+        double max = Integer.MIN_VALUE;
         for (DailyData dailyData : dailyDataList) {
             if (dailyData.getMaxPrice() > max) {
                 max = dailyData.getMaxPrice();
@@ -47,8 +47,8 @@ public class Stock {
 
     //REQUIRES: size of dailyData > 0
     //EFFECTS: returns the lowest price the stock has reached
-    public int minPrice() {
-        int min = Integer.MAX_VALUE;
+    public double minPrice() {
+        double min = Integer.MAX_VALUE;
         for (DailyData dailyData : dailyDataList) {
             if (dailyData.getMinPrice() < min) {
                 min = dailyData.getMinPrice();
@@ -60,9 +60,9 @@ public class Stock {
     //REQUIRES: size of dailyData > 0
     //EFFECTS: Returns the average price of a stock by summing the total of closing pricing and dividing by the
     //number of days.
-    public int avgPrice() {
+    public double avgPrice() {
         int days = 0;
-        int closingTotal = 0;
+        double closingTotal = 0;
         for (DailyData dailyData : dailyDataList) {
             closingTotal += dailyData.getClosingPrice();
             days++;
@@ -70,6 +70,7 @@ public class Stock {
         return closingTotal / days;
     }
 
+    //REQUIRES: Valid dailyData
     //MODIFIES: this
     //EFFECTS: adds daily data to dailyDayaList if it is not already presents.
     // Returns true if added successfully or returns false.
@@ -87,7 +88,8 @@ public class Stock {
         return dailyDataList.size();
     }
 
-    //Returns true if date is present in dailyDataList, or returns false.
+    //REQUIRES: Date string in valid format of MM/DD/YYYY
+    //EFFECTS: Returns true if date is present in dailyDataList, or returns false.
     public boolean dateSearch(String s) {
         for (DailyData dailyData : dailyDataList) {
             if (Objects.equals(dailyData.getDate(), s)) {
