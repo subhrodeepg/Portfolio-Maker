@@ -3,17 +3,21 @@ package ui;
 import model.*;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
+//portfolio console application
 public class PortfolioApp {
     private final PortfolioList portfolioList = new PortfolioList(new ArrayList<>());
     private Scanner input;
 
-
+    //EFFECTS: Runs the portfolio application
     public PortfolioApp() {
         runPortfolio();
     }
 
+    //MODIFIES: this
+    //EFFECTS: Takes user input and processes it
     private void runPortfolio() {
         boolean keepRunning = true;
 
@@ -30,8 +34,11 @@ public class PortfolioApp {
                 processCommand(command);
             }
         }
+        System.out.println("\nThank you!");
     }
 
+    //MODIFIES: this
+    //EFFECTS: Calls the proper function according to user input
     private void processCommand(String command) {
         if (command.equals("1")) {
             createPortfolio();
@@ -46,10 +53,13 @@ public class PortfolioApp {
         }
     }
 
+    //EFFECTS: Displays all the current portfolios and their stocks
     private void viewPortfolios() {
         System.out.println(portfolioList.displayAllPortfoliosAndStocks());
     }
 
+    //MODIFIES: this
+    //EFFECTS: Deletes a stock from a portfolio, if the stock exists. Or returns error message.
     private void deleteStock() {
         System.out.println("\nWhich portfolio do you want to add the stock to: ");
         System.out.println("\n" + portfolioList.getAllCategories());
@@ -72,7 +82,8 @@ public class PortfolioApp {
         }
     }
 
-    @SuppressWarnings("methodlength")
+    //MODIFIES: this
+    //EFFECTS: Creates a new stock in an existing portfolio, if the stock doesn't exist. Or returns error message.
     private void addStock() {
         System.out.println("\nWhich portfolio do you want to add the stock to: ");
         System.out.println("\n" + portfolioList.getAllCategories());
@@ -83,6 +94,38 @@ public class PortfolioApp {
         if (command == 0) {
             return;
         }
+
+        Stock newStock = createStock();
+        Portfolio existingPortfolio = portfolioList.getPortfolio(command - 1);
+        existingPortfolio.addStock(newStock);
+
+        if (existingPortfolio.addStock(newStock)) {
+            System.out.println("\nStock has been added successfully!");
+        } else {
+            System.out.println("\nStock cannot be added. Another stock with the same ticker exists. Please try again.");
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: Creates a new portfolio if the category doesn't exist. Or returns error message.
+    private void createPortfolio() {
+        System.out.println("Enter the category for the portfolio: ");
+        String category = input.next();
+        category = category.toLowerCase(Locale.ROOT);
+        if (portfolioList.isContainsPortfolio(category)) {
+            System.out.println("Portfolio cannot be created. A portfolio with the same category exists.");
+            return;
+        }
+        Stock newStock = createStock();
+        Portfolio newPortfolio = new Portfolio(new ArrayList<>(), category);
+        newPortfolio.addStock(newStock);
+        portfolioList.addPortfolio(newPortfolio);
+        System.out.println("Portfolio has been created successfully!");
+    }
+
+    //MODIFIES: this
+    //EFFECTS: Helper function to create a new stock.
+    private Stock createStock() {
         System.out.println("Enter a ticker symbol for a stock which will be include in the portfolio: ");
         String stockTicker = input.next();
         System.out.println("Enter the last opening price: ");
@@ -99,41 +142,10 @@ public class PortfolioApp {
         DailyData newDailyData = new DailyData(openingPrice,closingPrice, maxPrice, minPrice,date);
         Stock newStock = new Stock(new ArrayList<>(), stockTicker);
         newStock.addDailyData(newDailyData);
-        Portfolio existingPortfolio = portfolioList.getPortfolio(command - 1);
-        existingPortfolio.addStock(newStock);
-
-        if (existingPortfolio.addStock(newStock)) {
-            System.out.println("\nStock has been added successfully!");
-        } else {
-            System.out.println("\nStock cannot be added. Another stock with the same ticker exists. Please try again.");
-        }
+        return newStock;
     }
 
-    private void createPortfolio() {
-        System.out.println("Enter the category for the portfolio: ");
-        String category = input.next();
-        System.out.println("Enter a ticker symbol for a stock which will be include in the portfolio: ");
-        String stockTicker = input.next();
-        System.out.println("Enter the last opening price: ");
-        int openingPrice = input.nextInt();
-        System.out.println("Enter the last closing price: ");
-        int closingPrice = input.nextInt();
-        System.out.println("Enter the maximum price from the previous trading day: ");
-        int maxPrice = input.nextInt();
-        System.out.println("Enter the maximum price from the previous trading day: ");
-        int minPrice = input.nextInt();
-        System.out.println("Enter the date for the previous trading day (MM/DD/YYYY): ");
-        String date = input.next();
-
-        DailyData newDailyData = new DailyData(openingPrice,closingPrice, maxPrice, minPrice,date);
-        Stock newStock = new Stock(new ArrayList<>(), stockTicker);
-        newStock.addDailyData(newDailyData);
-        Portfolio newPortfolio = new Portfolio(new ArrayList<>(), category);
-        newPortfolio.addStock(newStock);
-
-        portfolioList.addPortfolio(newPortfolio);
-    }
-
+    //EFFECTS: Displays the options for the user.
     private void displayOptions() {
         System.out.println("\nHello!");
         System.out.println("\nSelect an option from the list below:");
@@ -144,6 +156,7 @@ public class PortfolioApp {
         System.out.println("\nEnter here (enter 0 to exit): ");
     }
 
+    //EFFECTS: Initializes a stock portfolio list with a technology portfolio containing AAPL stock
     private void init() {
         DailyData feb092022DailyData = new DailyData(100, 175, 180, 90, "02/09/2022");
         Stock aaplStock = new Stock(new ArrayList<>(), "AAPL");
@@ -155,6 +168,4 @@ public class PortfolioApp {
         input = new Scanner(System.in);
 
     }
-
-
 }
