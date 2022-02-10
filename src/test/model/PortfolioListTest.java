@@ -28,7 +28,7 @@ public class PortfolioListTest {
     }
 
     @Test
-    void addPortfolioSuccess(){
+    void addPortfolioSuccess() {
         DailyData dailyData1 = new
                 DailyData(90, 250, 250, 97, "01/09/2022");
         Stock stock1 = new Stock(new ArrayList<>(), "MSFT");
@@ -47,7 +47,7 @@ public class PortfolioListTest {
     }
 
     @Test
-    void addPortfolioFailure(){
+    void addPortfolioFailure() {
         DailyData dailyData1 = new
                 DailyData(100, 150, 175, 95, "01/08/2022");
         Stock stock1 = new Stock(new ArrayList<>(), "AAPL");
@@ -92,7 +92,7 @@ public class PortfolioListTest {
     }
 
     @Test
-    void failureToDeletePortfolio(){
+    void failureToDeletePortfolio() {
         DailyData dailyData1 = new
                 DailyData(90, 250, 250, 97, "01/09/2022");
         Stock stock1 = new Stock(new ArrayList<>(), "MSFT");
@@ -119,6 +119,35 @@ public class PortfolioListTest {
 
         assertTrue(portfolioList.addPortfolio(portfolio1));
         assertEquals(2, portfolioList.portfolioLength());
-        assertEquals("AAPL\nMSFT",portfolioList.displayAllPortfoliosAndStocks());
+        assertEquals("technology: AAPL\nbusiness: MSFT", portfolioList.displayAllPortfoliosAndStocks());
+    }
+
+    @Test
+    void getAllCategoriesTest() {
+        DailyData dailyData1 = new
+                DailyData(90, 250, 250, 97, "01/09/2022");
+        Stock stock1 = new Stock(new ArrayList<>(), "MSFT");
+        stock1.addDailyData(dailyData1);
+        Portfolio portfolio1 = new Portfolio(new ArrayList<>(), "business");
+        portfolio1.addStock(stock1);
+
+        assertTrue(portfolioList.addPortfolio(portfolio1));
+        assertEquals(2, portfolioList.portfolioLength());
+        assertEquals("1. technology, 2. business", portfolioList.getAllCategories());
+    }
+
+    @Test
+    void getPortfolio() {
+        DailyData dailyData1 = new
+                DailyData(90, 250, 250, 97, "01/09/2022");
+        Stock stock1 = new Stock(new ArrayList<>(), "MSFT");
+        stock1.addDailyData(dailyData1);
+        Portfolio portfolio1 = new Portfolio(new ArrayList<>(), "business");
+        portfolio1.addStock(stock1);
+
+        assertTrue(portfolioList.addPortfolio(portfolio1));
+        assertEquals(2, portfolioList.portfolioLength());
+        Portfolio portfolio2 = portfolioList.getPortfolio(1);
+        assertEquals(portfolio1, portfolio2);
     }
 }

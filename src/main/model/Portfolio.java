@@ -54,7 +54,7 @@ public class Portfolio {
             result[i] = stock.getTicker();
             i++;
         }
-        return String.join(", ", result);
+        return this.getCategory() + ": " + String.join(", ", result);
     }
 
 

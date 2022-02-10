@@ -53,4 +53,18 @@ public class PortfolioList {
         return portfolioList.size();
     }
 
+    public String getAllCategories() {
+        String[] result = new String[portfolioList.size()];
+        int i = 0;
+        for (Portfolio portfolio : portfolioList) {
+            result[i] = Integer.toString(i + 1) + ". " + portfolio.getCategory();
+            i++;
+        }
+        return String.join(", ", result);
+    }
+
+    public Portfolio getPortfolio(Integer index) {
+        return portfolioList.get(index);
+    }
+
 }

@@ -110,7 +110,7 @@ public class PortfolioTest {
         Stock stock1 = new Stock(new ArrayList<>(), "MSFT");
         stock1.addDailyData(dailyData1);
         assertTrue(portfolio.addStock(stock1));
-        assertEquals("AAPL, MSFT", portfolio.getAllStockTickers());
+        assertEquals("technology: AAPL, MSFT", portfolio.getAllStockTickers());
     }
 
     @Test
