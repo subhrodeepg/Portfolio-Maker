@@ -16,12 +16,11 @@ public class Portfolio {
     }
 
     public boolean addStock(Stock stockAdd) {
-        for (Stock stock : stockList) {
-            if (Objects.equals(stockAdd.getTicker(), stock.getTicker())) {
-                return false;
-            }
+        if (this.isContainsStockTicker(stockAdd.getTicker())) {
+            return false;
+        } else {
+            return stockList.add(stockAdd);
         }
-        return stockList.add(stockAdd);
     }
 
     public boolean deleteStock(Stock stockDelete) {
