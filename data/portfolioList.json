@@ -15,16 +15,28 @@
             "category": "technology"
         },
         {
-            "stockInfo": [{
-                "ticker": "HELLO",
-                "dateInfo": [{
-                    "date": "07/27/2022",
-                    "minPrice": 123123,
-                    "closingPrice": 1231231,
-                    "maxPrice": 1.2312312E7,
-                    "openingPrice": 123123
-                }]
-            }],
+            "stockInfo": [
+                {
+                    "ticker": "OKAY",
+                    "dateInfo": [{
+                        "date": "02/20/2022",
+                        "minPrice": 43242,
+                        "closingPrice": 5434,
+                        "maxPrice": 123,
+                        "openingPrice": 12312
+                    }]
+                },
+                {
+                    "ticker": "TD",
+                    "dateInfo": [{
+                        "date": "02/20/2022",
+                        "minPrice": 312312,
+                        "closingPrice": 13231,
+                        "maxPrice": 12,
+                        "openingPrice": 12312
+                    }]
+                }
+            ],
             "category": "business"
         }
     ]

@@ -90,6 +90,11 @@ public class DailyData {
         this.date = date;
     }
 
+    //This method was modeled after JsonSerializationDemo, the code can be found here:
+    //https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
+    //MODIFIES: this
+    //EFFECTS: Returns a json object from the dailyData object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("date", date);

@@ -82,6 +82,11 @@ public class PortfolioList {
         return portfolioList.get(index);
     }
 
+    //This class was modeled after JsonSerializationDemo, the code can be found here:
+    //https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
+    //MODIFIES: this
+    //EFFECTS: Initializes the iteration for creating a json object of portfolio list
 
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -90,7 +95,11 @@ public class PortfolioList {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    //This class was modeled after JsonSerializationDemo, the code can be found here:
+    //https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
+    //MODIFIES: this
+    //EFFECTS: Returns a json object from the portfolio object
     private JSONArray portfoliosToJson() {
         JSONArray jsonArray = new JSONArray();
 

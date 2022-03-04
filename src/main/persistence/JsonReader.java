@@ -13,14 +13,19 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
+//This class was modeled after JsonSerializationDemo, the code can be found here:
+//https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
+//Reads portfolio list from json file
 public class JsonReader {
     private String source;
 
+    //EFFECTS: Constructs reader to read from json file
     public JsonReader(String source) {
         this.source = source;
     }
 
+    //EFFECTS: Reads from a source file
     public PortfolioList read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
@@ -28,6 +33,7 @@ public class JsonReader {
 
     }
 
+    //EFFECTS: Initializes the parse and returns the saved portfolio list
     private PortfolioList initParse(JSONObject jsonObject) {
         PortfolioList savedPortfolioList = new PortfolioList(new ArrayList<Portfolio>());
         parsePortfolioList(savedPortfolioList, jsonObject);
@@ -35,6 +41,7 @@ public class JsonReader {
 
     }
 
+    //EFFECTS: Parses over the saved portfolio list
     private void parsePortfolioList(PortfolioList savedPortfolioList, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("portfolios");
         for (Object json : jsonArray) {
@@ -43,6 +50,8 @@ public class JsonReader {
         }
     }
 
+    //MODIFIES: savedPortfolioList
+    //EFFECTS: Iterates over saved saved portfolio
     private void addPortfolio(PortfolioList savedPortfolioList, JSONObject nextPortfolio) {
         JSONArray jsonArray = nextPortfolio.getJSONArray("stockInfo");
         Portfolio savedPortfolio = new Portfolio(new ArrayList<Stock>(), (String) nextPortfolio.get("category"));
@@ -53,6 +62,8 @@ public class JsonReader {
         savedPortfolioList.addPortfolio(savedPortfolio);
     }
 
+    //MODIFIES: savedPortfolio
+    //EFFECTS: Iterates over saved stock
     private void addStock(Portfolio savedPortfolio, JSONObject nextStock) {
         JSONArray jsonArray = nextStock.getJSONArray("dateInfo");
         Stock savedStock = new Stock(new ArrayList<DailyData>(), (String) nextStock.get("ticker"));
@@ -64,6 +75,8 @@ public class JsonReader {
 
     }
 
+    //MODIFIES: savedStock
+    //EFFECTS: Adds dailyData to savedStock
     private void addDailyDate(Stock savedStock, JSONObject nextDailyData) {
 
         Double openingPrice = nextDailyData.getDouble("openingPrice");

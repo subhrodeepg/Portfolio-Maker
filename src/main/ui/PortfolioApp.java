@@ -182,7 +182,9 @@ public class PortfolioApp {
 
     }
 
-    // EFFECTS: saves the workroom to file
+    //This class was modeled after JsonSerializationDemo, the code can be found here:
+    //https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+    // EFFECTS: saves the portfolio list to file
     private void savePortfolioList() {
         try {
             jsonWriter.open();
@@ -194,6 +196,9 @@ public class PortfolioApp {
         }
     }
 
+    //This class was modeled after JsonSerializationDemo, the code can be found here:
+    //https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+    //EFFECTS: loads portfolio list from json file
     private void loadPortfolioList() {
         try {
             portfolioList = jsonReader.read();

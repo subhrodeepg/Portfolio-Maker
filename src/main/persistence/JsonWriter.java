@@ -7,6 +7,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
+//This class was modeled after JsonSerializationDemo, the code can be found here:
+//https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
+// Writes portfolio list to json file
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
@@ -25,7 +29,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of workroom to file
+    // EFFECTS: writes JSON representation of portfolio to file
     public void write(PortfolioList portfolioList) {
         JSONObject json = portfolioList.toJson();
         saveToFile(json.toString(TAB));

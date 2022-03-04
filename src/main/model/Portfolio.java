@@ -104,6 +104,11 @@ public class Portfolio {
         category = newCategory;
     }
 
+    //This class was modeled after JsonSerializationDemo, the code can be found here:
+    //https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
+    //MODIFIES: this
+    //EFFECTS: Returns a json object from the portfolio object
     public JSONObject toJson() {
         JSONArray jsonArray = new JSONArray();
         JSONObject jsonObject = new JSONObject();
