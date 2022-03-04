@@ -1,0 +1,16 @@
+{
+    "name": "portfolioList",
+    "portfolios": [{
+        "stockInfo": [{
+            "ticker": "AAPL",
+            "dateInfo": [{
+                "date": "02/09/2022",
+                "minPrice": 90,
+                "closingPrice": 175,
+                "maxPrice": 180,
+                "openingPrice": 100
+            }]
+        }],
+        "category": "technology"
+    }]
+}

@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -27,6 +30,10 @@ public class Portfolio {
         } else {
             return stockList.add(stockAdd);
         }
+    }
+
+    public Stock getStock(int index) {
+        return stockList.get(index);
     }
 
     //REQUIRES: Valid stock
@@ -95,5 +102,18 @@ public class Portfolio {
     //EFFECTS: Sets new category
     public void setCategory(String newCategory) {
         category = newCategory;
+    }
+
+    public JSONObject toJson() {
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+
+        for (Stock stock : stockList) {
+            jsonArray.put(stock.toJson());
+        }
+        jsonObject.put("category", category);
+        jsonObject.put("stockInfo", jsonArray);
+
+        return jsonObject;
     }
 }

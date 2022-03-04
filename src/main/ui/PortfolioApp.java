@@ -1,18 +1,26 @@
 package ui;
 
 import model.*;
+import persistence.*;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
 //portfolio console application
 public class PortfolioApp {
-    private final PortfolioList portfolioList = new PortfolioList(new ArrayList<>());
+    private static final String filePath = "./data/portfolioList.json";
+    private PortfolioList portfolioList = new PortfolioList(new ArrayList<>());
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     //EFFECTS: Runs the portfolio application
     public PortfolioApp() {
+        jsonWriter = new JsonWriter(filePath);
+        jsonReader = new JsonReader(filePath);
         runPortfolio();
     }
 
@@ -48,6 +56,10 @@ public class PortfolioApp {
             deleteStock();
         } else if (command.equals("4")) {
             viewPortfolios();
+        } else if (command.equals("5")) {
+            savePortfolioList();
+        } else if (command.equals("6")) {
+            loadPortfolioList();
         } else {
             System.out.println("Invalid input. Please try again.");
         }
@@ -97,7 +109,6 @@ public class PortfolioApp {
 
         Stock newStock = createStock();
         Portfolio existingPortfolio = portfolioList.getPortfolio(command - 1);
-        existingPortfolio.addStock(newStock);
 
         if (existingPortfolio.addStock(newStock)) {
             System.out.println("\nStock has been added successfully!");
@@ -153,6 +164,8 @@ public class PortfolioApp {
         System.out.println("\n2. Add a stock to an existing portfolio.");
         System.out.println("\n3. Delete a stock from an existing portfolio.");
         System.out.println("\n4. View all portfolios and stocks.");
+        System.out.println("\n5. Save all portfolios and stocks.");
+        System.out.println("\n6. Load all portfolios and stocks.");
         System.out.println("\nEnter here (enter 0 to exit): ");
     }
 
@@ -168,4 +181,27 @@ public class PortfolioApp {
         input = new Scanner(System.in);
 
     }
+
+    // EFFECTS: saves the workroom to file
+    private void savePortfolioList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(portfolioList);
+            jsonWriter.close();
+            System.out.println("Saved portfolios to " + filePath);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + filePath);
+        }
+    }
+
+    private void loadPortfolioList() {
+        try {
+            portfolioList = jsonReader.read();
+            System.out.println("Loaded portfolios from " + filePath);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + filePath);
+        }
+    }
+
+
 }

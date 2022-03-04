@@ -1,0 +1,31 @@
+{
+  "name": "portfolioList",
+  "portfolios": [
+    {
+      "stockInfo": [{
+        "ticker": "AAPL",
+        "dateInfo": [{
+          "date": "02/09/2022",
+          "minPrice": 90,
+          "closingPrice": 175,
+          "maxPrice": 180,
+          "openingPrice": 100
+        }]
+      }],
+      "category": "technology"
+    },
+    {
+      "stockInfo": [{
+        "ticker": "HELLO",
+        "dateInfo": [{
+          "date": "07/27/2022",
+          "minPrice": 123123,
+          "closingPrice": 1231231,
+          "maxPrice": 1.2312312E7,
+          "openingPrice": 123123
+        }]
+      }],
+      "category": "business"
+    }
+  ]
+}

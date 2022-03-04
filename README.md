@@ -17,3 +17,5 @@ I choose this project because I am interested in financial technologies, and I a
 - As a user, I want to add a stock to the portfolio
 - As a user, I want to delete a stock from a portfolio
 - As a user, I want to see the number of total number of portfolios and number of stocks within each
+- As a user, I want to save my portfolios
+- As a user, I want to load in my portfolios from an external file

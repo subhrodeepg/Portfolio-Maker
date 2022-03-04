@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
@@ -100,5 +103,14 @@ public class Stock {
     }
 
 
-
+    public JSONObject toJson() {
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+        for (DailyData dailyData : dailyDataList) {
+            jsonArray.put(dailyData.toJson());
+        }
+        jsonObject.put("ticker", ticker);
+        jsonObject.put("dateInfo", jsonArray);
+        return jsonObject;
+    }
 }

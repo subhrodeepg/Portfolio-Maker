@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 //DailyData contains opening price, closing price, maximum price the stock reached, and minimum price the stock
 // reached for the date.
 public class DailyData {
@@ -86,5 +88,16 @@ public class DailyData {
     //EFFECTS: Changes the date.
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("date", date);
+        json.put("openingPrice", openingPrice);
+        json.put("closingPrice", closingPrice);
+        json.put("maxPrice", maxPrice);
+        json.put("minPrice", minPrice);
+
+        return json;
     }
 }

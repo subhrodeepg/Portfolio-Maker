@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -77,6 +80,25 @@ public class PortfolioList {
     //EFFECTS: Returns portfolio using zero index from portfolio list
     public Portfolio getPortfolio(Integer index) {
         return portfolioList.get(index);
+    }
+
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", "portfolioList");
+        json.put("portfolios", portfoliosToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray portfoliosToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Portfolio portfolio : portfolioList) {
+            jsonArray.put(portfolio.toJson());
+        }
+
+        return jsonArray;
     }
 
 }
