@@ -10,10 +10,13 @@ import model.Stock;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,7 +34,7 @@ public class PortfolioGUI extends JFrame {
     private JsonReader jsonReader;
 
 
-    public PortfolioGUI() {
+    public PortfolioGUI() throws IOException {
         super("Portfolio App");
         init();
         initializeGraphics();
@@ -50,7 +53,7 @@ public class PortfolioGUI extends JFrame {
         portfolioList.addPortfolio(technologyPortfolio);
     }
 
-    private void initializeGraphics() {
+    private void initializeGraphics() throws IOException {
         setSize(800, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -453,21 +456,33 @@ public class PortfolioGUI extends JFrame {
     }
 
 
-    private void createMainPanel() {
+    private void createMainPanel() throws IOException {
         mainPanel = new JPanel();
         mainPanel.setLayout(null);
         mainPanel.setBounds(0, 0, 600, 400);
         mainPanel.setBackground(new Color(216, 33, 72));
 
+        try {
+            BufferedImage myPicture = ImageIO.read(new File("./data/portfolio_manager.png"));
+            JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+            picLabel.setBounds(150, 25, 500, 500);
+            mainPanel.add(picLabel);
+        } catch (IOException ex) {
+            System.out.println("File not found");
+        }
+
         JLabel welcomeMsg = new JLabel("Welcome!");
         welcomeMsg.setFont(new Font("Segoe UI", Font.PLAIN, 24));
-        welcomeMsg.setBounds(100, 100, 300, 100);
+        welcomeMsg.setBounds(350, 400, 300, 100);
+        mainPanel.add(welcomeMsg);
+
         welcomeMsg.setForeground(Color.WHITE);
 
         JButtonNew portolfiosBtn = new JButtonNew("View All Portfolios");
-        portolfiosBtn.setBounds(100, 300, 150, 35);
+        portolfiosBtn.setBounds(330, 500, 150, 35);
 
-        mainPanel.add(welcomeMsg);
+//        mainPanel.add(welcomeMsg);
+
         mainPanel.add(portolfiosBtn);
         containerActionListener(portolfiosBtn, "ListPanel");
     }
