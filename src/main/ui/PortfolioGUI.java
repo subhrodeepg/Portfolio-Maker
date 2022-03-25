@@ -21,6 +21,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+//Creates the Portfolio App GUI
 public class PortfolioGUI extends JFrame {
 
     JPanel mainPanel;
@@ -32,14 +33,27 @@ public class PortfolioGUI extends JFrame {
     private static final String filePath = "./data/portfolioList.json";
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
+    private JTextField portfolioCategory;
+    private JButtonNew buttonOne;
+    private JTextField ticker;
+    private JTextField openPrice;
+    private JTextField closePrice;
+    private JTextField minPrice;
+    private JTextField maxPrice;
+    private JTextField date;
+    private JButtonNew buttonTwo;
+    private String action;
 
 
+    //EFFECTS: Runs the portfolio GUI
     public PortfolioGUI() throws IOException {
         super("Portfolio App");
         init();
         initializeGraphics();
     }
 
+    //MODIFIES: this
+    //EFFECTS: Initializes the graphics
     private void init() {
         jsonWriter = new JsonWriter(filePath);
         jsonReader = new JsonReader(filePath);
@@ -53,6 +67,8 @@ public class PortfolioGUI extends JFrame {
         portfolioList.addPortfolio(technologyPortfolio);
     }
 
+    //MODIFIES: this
+    //EFFECTS: Adds image and welcome message
     private void initializeGraphics() throws IOException {
         setSize(800, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,6 +85,8 @@ public class PortfolioGUI extends JFrame {
         setVisible(true);
     }
 
+    //MODIFIES: this
+    //EFFECTS: Creates the container and adds the 2 main panels
     public void getContainer() {
         container = new JPanel();
         cl = new CardLayout();
@@ -77,6 +95,8 @@ public class PortfolioGUI extends JFrame {
         container.add(listPanel, "ListPanel");
     }
 
+    //MODIFIES: this
+    //EFFECTS: Creates the list panel
     private void setListPanel() {
         listPanel = new JPanel();
         listPanel.setLayout(null);
@@ -93,18 +113,8 @@ public class PortfolioGUI extends JFrame {
         listPanel.add(portfolioListDisplay);
     }
 
-    private JTextField portfolioCategory;
-    private JButtonNew buttonOne;
-    private JTextField ticker;
-    private JTextField openPrice;
-    private JTextField closePrice;
-    private JTextField minPrice;
-    private JTextField maxPrice;
-    private JTextField date;
-    private JButtonNew buttonTwo;
-    private String action;
-
-
+    //MODIFIES: this
+    //EFFECTS: Creates the fields
     private void createFields() {
         createPortfolioCategoryField();
         createButtonOne();
@@ -113,6 +123,8 @@ public class PortfolioGUI extends JFrame {
         createAddStockButton();
     }
 
+    //MODIFIES: this
+    //EFFECTS:: Creates the portfolio category field
     private void createPortfolioCategoryField() {
         portfolioCategory = new JTextFieldNew("Portfolio");
         portfolioCategory.setLocation(420, 100);
@@ -120,6 +132,8 @@ public class PortfolioGUI extends JFrame {
         portfolioCategory.setVisible(false);
     }
 
+    //MODIFIES: this
+    //EFFECTS: Creates the main button
     private void createButtonOne() {
         buttonOne = new JButtonNew("");
         buttonOne.setSize(150, 40);
@@ -130,6 +144,8 @@ public class PortfolioGUI extends JFrame {
         updateButtonOne();
     }
 
+    //MODIFIES: this
+    //EFFECTS: Updates the button depending on the input
     private void updateButtonOne() {
         buttonOne.addActionListener(new ActionListener() {
             @Override
@@ -150,9 +166,11 @@ public class PortfolioGUI extends JFrame {
 
     }
 
+    //MODIFIES: this
+    //EFFECTS: Updates the button when delete stock is selected
     private void updateButtonOneDeleteStock() {
         try {
-            portfolioList.getPortfolio(Integer.parseInt(portfolioCategory.getText()) + 1);
+            portfolioList.getPortfolio(Integer.parseInt(portfolioCategory.getText()) - 1);
 
             ticker.setVisible(true);
 
@@ -163,9 +181,11 @@ public class PortfolioGUI extends JFrame {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: Updates the button when add stock is selected
     private void updateButtonOneAddStock() {
         try {
-            portfolioList.getPortfolio(Integer.parseInt(portfolioCategory.getText()) + 1);
+            portfolioList.getPortfolio(Integer.parseInt(portfolioCategory.getText()) - 1);
 
             ticker.setVisible(true);
             openPrice.setVisible(true);
@@ -180,6 +200,8 @@ public class PortfolioGUI extends JFrame {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: Updates the button when add portfolio is selected
     private void updateButtonOneAddPortfolio() {
         try {
             portfolioList.isContainsPortfolio(portfolioCategory.getText());
@@ -197,6 +219,8 @@ public class PortfolioGUI extends JFrame {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: Creates the ticker field
     private void createTickerField() {
         ticker = new JTextFieldNew("Ticker");
         ticker.setLocation(420, 200);
@@ -204,6 +228,8 @@ public class PortfolioGUI extends JFrame {
         ticker.setVisible(false);
     }
 
+    //MODIFIES: this
+    //EFFECTS: Creates the stock fields
     private void createPriceFields() {
         openPrice = new JTextFieldNew("Open price");
         openPrice.setLocation(420, 250);
@@ -231,6 +257,8 @@ public class PortfolioGUI extends JFrame {
         date.setVisible(false);
     }
 
+    //MODIFIES: this
+    //EFFECTS: Creates add stock button
     private void createAddStockButton() {
         buttonTwo = new JButtonNew("");
         buttonTwo.setBounds(420, 500, 200, 40);
@@ -240,6 +268,8 @@ public class PortfolioGUI extends JFrame {
         updateAddStockButton();
     }
 
+    //MODIFIES: this
+    //EFFECTS:Updates add stock button
     private void updateAddStockButton() {
         buttonTwo.addActionListener(new ActionListener() {
             @Override
@@ -262,11 +292,13 @@ public class PortfolioGUI extends JFrame {
         });
     }
 
+    //MODIFIES: this
+    //EEFFCTS: Deletes stock from portfolio
     private void deleteStock() {
         try {
             // get portfolio
             Portfolio portfolio1 =
-                    portfolioList.getPortfolio(Integer.parseInt(portfolioCategory.getText()));
+                    portfolioList.getPortfolio(Integer.parseInt(portfolioCategory.getText()) - 1);
             // check if ticker exists inside portfolio
             portfolio1.confirmStockExists(ticker.getText());
             // delete ticker from portfolio
@@ -282,12 +314,14 @@ public class PortfolioGUI extends JFrame {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: Add stock to the portfolio
     private void addStock() {
         DailyData newDailyData;
         Stock newStock;
         try {
             Portfolio portfolio =
-                    portfolioList.getPortfolio(Integer.parseInt(portfolioCategory.getText()));
+                    portfolioList.getPortfolio(Integer.parseInt(portfolioCategory.getText()) - 1);
 
             portfolio.confirmStockDoesNotExist(ticker.getText());
             newDailyData = new DailyData(
@@ -311,6 +345,8 @@ public class PortfolioGUI extends JFrame {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: Add portfolio to portfolio list
     private void addPortfolio() {
         Stock newStock;
         DailyData newDailyData;
@@ -341,12 +377,14 @@ public class PortfolioGUI extends JFrame {
         return;
     }
 
+    //MODIFIES: this
+    //EFFECTS: Abstract method for pop up pane
     private void popPane(String content) {
         JOptionPane.showMessageDialog(null, content, "Stock App", JOptionPane.WARNING_MESSAGE);
     }
 
-
-
+    //MODIFIES: this
+    //EFFECTS: Creates the buttons
     private void createPortfolioListButtons() {
         createMainAddPortfolioButton();
         createMainAddStockButton();
@@ -356,7 +394,8 @@ public class PortfolioGUI extends JFrame {
         createLoadButton();
     }
 
-
+    //MODIFIES: this
+    //EFFECTS: Creates main add portffolio button
     private void createMainAddPortfolioButton() {
         JButtonNew mainAddPortfolioButton = new JButtonNew("Add Portfolio");
         mainAddPortfolioButton.setLocation(100, 500);
@@ -373,7 +412,8 @@ public class PortfolioGUI extends JFrame {
         });
     }
 
-    // Creates add stock
+    //MODIFIES: this
+    //EFFECTS: Creates add stock
     private void createMainAddStockButton() {
         JButtonNew mainAddStockButton = new JButtonNew("Add Stock");
         mainAddStockButton.setLocation(200, 500);
@@ -390,7 +430,8 @@ public class PortfolioGUI extends JFrame {
         });
     }
 
-    // Creates delete stock button
+    //MODIFIES: this
+    //EFFECTS: Creates delete stock button
     private void createMainDeleteStockButton() {
         JButtonNew mainDeleteStockButton = new JButtonNew("Delete Stock");
         mainDeleteStockButton.setLocation(300, 500);
@@ -407,7 +448,8 @@ public class PortfolioGUI extends JFrame {
         });
     }
 
-    // Creates save button
+    //MODIFIES: this
+    //EFFECTS: Creates save button
     private void createSaveButton() {
         JButtonNew saveBtn = new JButtonNew("Save");
         saveBtn.setBounds(100, 445, 75, 35);
@@ -420,7 +462,8 @@ public class PortfolioGUI extends JFrame {
         });
     }
 
-    // Creates load button
+    //MODIFIES: this
+    //EFFECTS: Creates load button
     private void createLoadButton() {
         JButtonNew loadBtn = new JButtonNew("Load");
         loadBtn.setBounds(175, 445, 75, 35);
@@ -434,8 +477,8 @@ public class PortfolioGUI extends JFrame {
     }
 
 
-
-    // Resets and hides all fields
+    //MODIFIES: this
+    //EFFECTS: Resets and hides all fields
     private void clearFields() {
         portfolioCategory.setText("Portfolio");
         portfolioCategory.setVisible(false);
@@ -455,7 +498,8 @@ public class PortfolioGUI extends JFrame {
         buttonTwo.setVisible(false);
     }
 
-
+    //MODIFIES: this
+    //EFFECTS: Creates the main panel
     private void createMainPanel() throws IOException {
         mainPanel = new JPanel();
         mainPanel.setLayout(null);
@@ -487,6 +531,8 @@ public class PortfolioGUI extends JFrame {
         containerActionListener(portolfiosBtn, "ListPanel");
     }
 
+    //MODIFIES: this
+    //EFFECTS:Abstract function for action listener
     public void containerActionListener(JButtonNew button, String page) {
         button.addActionListener(new ActionListener() {
             @Override
@@ -497,6 +543,8 @@ public class PortfolioGUI extends JFrame {
 
     }
 
+    //MODIFIES: this
+    //EFFECTS: Loads portfolio list
     private void loadPortfolioList() {
         try {
             portfolioList = jsonReader.read();
@@ -507,6 +555,7 @@ public class PortfolioGUI extends JFrame {
         }
     }
 
+    //EFFECTS: Saves portfolio list
     private void savePortfolioList() {
         try {
             jsonWriter.open();
