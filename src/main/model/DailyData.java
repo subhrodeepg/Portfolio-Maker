@@ -105,4 +105,6 @@ public class DailyData {
 
         return json;
     }
+
+    
 }

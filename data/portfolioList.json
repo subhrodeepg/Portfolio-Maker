@@ -15,29 +15,17 @@
             "category": "technology"
         },
         {
-            "stockInfo": [
-                {
-                    "ticker": "OKAY",
-                    "dateInfo": [{
-                        "date": "02/20/2022",
-                        "minPrice": 43242,
-                        "closingPrice": 5434,
-                        "maxPrice": 123,
-                        "openingPrice": 12312
-                    }]
-                },
-                {
-                    "ticker": "TD",
-                    "dateInfo": [{
-                        "date": "02/20/2022",
-                        "minPrice": 312312,
-                        "closingPrice": 13231,
-                        "maxPrice": 12,
-                        "openingPrice": 12312
-                    }]
-                }
-            ],
-            "category": "business"
+            "stockInfo": [{
+                "ticker": "BANK",
+                "dateInfo": [{
+                    "date": "02/22/2022",
+                    "minPrice": 1231,
+                    "closingPrice": 1231,
+                    "maxPrice": 1231,
+                    "openingPrice": 1231
+                }]
+            }],
+            "category": "finance"
         }
     ]
 }

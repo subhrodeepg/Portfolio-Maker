@@ -1,10 +1,11 @@
 package model;
 
+import exceptions.StockAlreadyExistsException;
+import exceptions.StockDoesNotExistException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 //Portfolio contains a list of all the stocks that have been added, and a category name.
@@ -21,15 +22,11 @@ public class Portfolio {
         this.category = category;
     }
 
-    //REQUIRES: Valid stock
+    //REQUIRES: Stock does not already exist
     //MODIFIES: this
     //EFFECTS: Adds a new stock to stock list
-    public boolean addStock(Stock stockAdd) {
-        if (this.isContainsStockTicker(stockAdd.getTicker())) {
-            return false;
-        } else {
-            return stockList.add(stockAdd);
-        }
+    public void addStock(Stock stockAdd) {
+        stockList.add(stockAdd);
     }
 
     public Stock getStock(int index) {
@@ -77,15 +74,30 @@ public class Portfolio {
         return this.getCategory() + ": " + String.join(", ", result);
     }
 
-
-    //EFFECTS: Returns true if stock ticker is in stock list
-    public boolean isContainsStockTicker(String stockTicker) {
+    //EFFECTS: Throws error if stock already exists
+    public void confirmStockDoesNotExist(String stockTicker) throws StockAlreadyExistsException {
+        boolean exists = false;
         for (Stock stock : stockList) {
             if (Objects.equals(stock.getTicker(), stockTicker)) {
-                return true;
+                exists = true;
             }
         }
-        return false;
+        if (exists) {
+            throw new StockAlreadyExistsException();
+        }
+    }
+
+    //EFFECTS: Throws error if stock does not exist
+    public void confirmStockExists(String stockTicker) throws StockDoesNotExistException {
+        boolean exists = false;
+        for (Stock stock : stockList) {
+            if (Objects.equals(stock.getTicker(), stockTicker)) {
+                exists = true;
+            }
+        }
+        if (!exists) {
+            throw new StockDoesNotExistException();
+        }
     }
 
     //EFFECTS: Returns stock list length

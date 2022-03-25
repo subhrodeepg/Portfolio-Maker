@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.CategoryExistsException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -18,12 +19,8 @@ public class PortfolioList {
     //REQUIRES: valid portfolio
     //MODIFIES: this
     //EFFECTS: adds portfolio to portfolio list
-    public boolean addPortfolio(Portfolio portfolioToAdd) {
-        if (this.isContainsPortfolio(portfolioToAdd.getCategory())) {
-            return false;
-        } else {
-            return portfolioList.add(portfolioToAdd);
-        }
+    public void addPortfolio(Portfolio portfolioToAdd) {
+        portfolioList.add(portfolioToAdd);
     }
 
     //MODIFIES: this
@@ -41,13 +38,12 @@ public class PortfolioList {
     }
 
     //EFFECTS: Returns true if portfolio is in portfolio list, using category. Or returns false.
-    public boolean isContainsPortfolio(String category) {
+    public void isContainsPortfolio(String category) throws CategoryExistsException {
         for (Portfolio portfolio : portfolioList) {
             if (Objects.equals(portfolio.getCategory(), category)) {
-                return true;
+                throw new CategoryExistsException();
             }
         }
-        return false;
     }
 
     //EFFECTS: Returns string with all portfolios and their stocks
