@@ -20,7 +20,7 @@ public class PortfolioListTest {
         stock = new Stock(new ArrayList<>(), "AAPL");
         stock.addDailyData(dailyData);
         portfolio = new Portfolio(new ArrayList<>(), "technology");
-        portfolio.addStock(stock);
+        portfolio.addStockToPortfolio(stock);
         ArrayList<Portfolio> portfolioListArgument = new ArrayList<>();
         portfolioListArgument.add(portfolio);
         portfolioList = new PortfolioList(portfolioListArgument);
@@ -33,7 +33,7 @@ public class PortfolioListTest {
         Stock stock1 = new Stock(new ArrayList<>(), "MSFT");
         stock1.addDailyData(dailyData1);
         Portfolio portfolio1 = new Portfolio(new ArrayList<>(), "business");
-        portfolio1.addStock(stock1);
+        portfolio1.addStockToPortfolio(stock1);
 //        ArrayList<Portfolio> portfolioListArgument1 = new ArrayList<>();
 //        portfolioListArgument1.add(portfolio);
 //        PortfolioList portfolioList1 = new PortfolioList(portfolioListArgument1);
@@ -61,7 +61,7 @@ public class PortfolioListTest {
         Stock stock1 = new Stock(new ArrayList<>(), "AAPL");
         stock1.addDailyData(dailyData1);
         Portfolio portfolio1 = new Portfolio(new ArrayList<>(), "technology");
-        portfolio1.addStock(stock1);
+        portfolio1.addStockToPortfolio(stock1);
 //        ArrayList<Portfolio> portfolioListArgument1 = new ArrayList<>();
 //        portfolioListArgument1.add(portfolio);
 //        PortfolioList portfolioList1 = new PortfolioList(portfolioListArgument1);
@@ -99,7 +99,7 @@ public class PortfolioListTest {
         Stock stock1 = new Stock(new ArrayList<>(), "MSFT");
         stock1.addDailyData(dailyData1);
         Portfolio portfolio1 = new Portfolio(new ArrayList<>(), "business");
-        portfolio1.addStock(stock1);
+        portfolio1.addStockToPortfolio(stock1);
 
         portfolioList.addPortfolio(portfolio1);
         assertEquals(2, portfolioList.portfolioLength());
@@ -125,7 +125,7 @@ public class PortfolioListTest {
         Stock stock1 = new Stock(new ArrayList<>(), "MSFT");
         stock1.addDailyData(dailyData1);
         Portfolio portfolio1 = new Portfolio(new ArrayList<>(), "business");
-        portfolio1.addStock(stock1);
+        portfolio1.addStockToPortfolio(stock1);
 
         portfolioList.addPortfolio(portfolio1);
         assertEquals(2, portfolioList.portfolioLength());
@@ -151,7 +151,7 @@ public class PortfolioListTest {
         Stock stock1 = new Stock(new ArrayList<>(), "MSFT");
         stock1.addDailyData(dailyData1);
         Portfolio portfolio1 = new Portfolio(new ArrayList<>(), "business");
-        portfolio1.addStock(stock1);
+        portfolio1.addStockToPortfolio(stock1);
 
         portfolioList.addPortfolio(portfolio1);
         assertEquals(2, portfolioList.portfolioLength());
@@ -165,7 +165,7 @@ public class PortfolioListTest {
         Stock stock1 = new Stock(new ArrayList<>(), "MSFT");
         stock1.addDailyData(dailyData1);
         Portfolio portfolio1 = new Portfolio(new ArrayList<>(), "business");
-        portfolio1.addStock(stock1);
+        portfolio1.addStockToPortfolio(stock1);
 
         portfolioList.addPortfolio(portfolio1);
         assertEquals(2, portfolioList.portfolioLength());
@@ -179,7 +179,7 @@ public class PortfolioListTest {
         Stock stock1 = new Stock(new ArrayList<>(), "MSFT");
         stock1.addDailyData(dailyData1);
         Portfolio portfolio1 = new Portfolio(new ArrayList<>(), "business");
-        portfolio1.addStock(stock1);
+        portfolio1.addStockToPortfolio(stock1);
 
         portfolioList.addPortfolio(portfolio1);
         assertEquals(2, portfolioList.portfolioLength());

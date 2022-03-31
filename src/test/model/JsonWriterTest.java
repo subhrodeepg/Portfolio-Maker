@@ -5,9 +5,7 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 import java.util.ArrayList;
 
-import javax.sound.sampled.Port;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -52,7 +50,7 @@ public class JsonWriterTest {
             Stock aaplStock = new Stock(new ArrayList<>(), "AAPL");
             aaplStock.addDailyData(feb092022DailyData);
             Portfolio technologyPortfolio = new Portfolio(new ArrayList<>(), "technology");
-            technologyPortfolio.addStock(aaplStock);
+            technologyPortfolio.addStockToPortfolio(aaplStock);
             portfolioList.addPortfolio(technologyPortfolio);
 
             JsonWriter jsonWriter = new JsonWriter("./data/emptyPortfolio.json");

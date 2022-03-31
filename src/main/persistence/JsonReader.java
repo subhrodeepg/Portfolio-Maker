@@ -1,9 +1,6 @@
 package persistence;
 
-import model.DailyData;
-import model.Portfolio;
-import model.PortfolioList;
-import model.Stock;
+import model.*;
 import org.json.*;
 
 import java.io.IOException;
@@ -29,6 +26,7 @@ public class JsonReader {
     public PortfolioList read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
+        EventLog.getInstance().logEvent(new Event("Portfolios and Stocks have been loaded from a file."));
         return initParse(jsonObject);
 
     }
@@ -71,7 +69,7 @@ public class JsonReader {
             JSONObject nextDailyData = (JSONObject) json;
             addDailyDate(savedStock, nextDailyData);
         }
-        savedPortfolio.addStock(savedStock);
+        savedPortfolio.addStockToPortfolio(savedStock);
 
     }
 

@@ -3,10 +3,8 @@ package ui;
 import exceptions.CategoryExistsException;
 import exceptions.StockAlreadyExistsException;
 import exceptions.StockDoesNotExistException;
-import model.DailyData;
-import model.Portfolio;
-import model.PortfolioList;
-import model.Stock;
+import model.*;
+import model.Event;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -15,6 +13,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -62,7 +62,7 @@ public class PortfolioGUI extends JFrame {
         Stock aaplStock = new Stock(new ArrayList<>(), "AAPL");
         aaplStock.addDailyData(feb092022DailyData);
         Portfolio technologyPortfolio = new Portfolio(new ArrayList<>(), "technology");
-        technologyPortfolio.addStock(aaplStock);
+        technologyPortfolio.addStockToPortfolio(aaplStock);
 
         portfolioList.addPortfolio(technologyPortfolio);
     }
@@ -71,7 +71,15 @@ public class PortfolioGUI extends JFrame {
     //EFFECTS: Adds image and welcome message
     private void initializeGraphics() throws IOException {
         setSize(800, 800);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                printLog(EventLog.getInstance());
+                System.exit(0);
+            }
+        });
 
         createMainPanel();
         setListPanel();
@@ -83,6 +91,13 @@ public class PortfolioGUI extends JFrame {
         createPortfolioListButtons();
 
         setVisible(true);
+    }
+
+
+    public void printLog(EventLog el) {
+        for (Event next : el) {
+            System.out.println(next.toString() + "\n");
+        }
     }
 
     //MODIFIES: this
@@ -333,7 +348,7 @@ public class PortfolioGUI extends JFrame {
 
             newStock = new Stock(new ArrayList<>(), ticker.getText());
             newStock.addDailyData(newDailyData);
-            portfolio.addStock(newStock);
+            portfolio.addStockToPortfolio(newStock);
             // confirmation
             displayText.setText(portfolioList.displayAllPortfoliosAndStocks());
             repaint();
@@ -365,7 +380,7 @@ public class PortfolioGUI extends JFrame {
         // create new portfolio
         Portfolio newPortfolio = new Portfolio(new ArrayList<>(), portfolioCategory.getText());
         // add stock to portfolio
-        newPortfolio.addStock(newStock);
+        newPortfolio.addStockToPortfolio(newStock);
         // add stock to list
         portfolioList.addPortfolio(newPortfolio);
         // confirmation

@@ -2,53 +2,29 @@
     "name": "portfolioList",
     "portfolios": [
         {
-            "stockInfo": [
-                {
-                    "ticker": "AAPL",
-                    "dateInfo": [{
-                        "date": "02/09/2022",
-                        "minPrice": 90,
-                        "closingPrice": 175,
-                        "maxPrice": 180,
-                        "openingPrice": 100
-                    }]
-                },
-                {
-                    "ticker": "MSFT",
-                    "dateInfo": [{
-                        "date": "12312",
-                        "minPrice": 123,
-                        "closingPrice": 1231,
-                        "maxPrice": 123,
-                        "openingPrice": 1231
-                    }]
-                }
-            ],
+            "stockInfo": [{
+                "ticker": "MSFT",
+                "dateInfo": [{
+                    "date": "12412",
+                    "minPrice": 12412,
+                    "closingPrice": 124,
+                    "maxPrice": 12412,
+                    "openingPrice": 124
+                }]
+            }],
             "category": "technology"
         },
         {
-            "stockInfo": [
-                {
-                    "ticker": "BANK",
-                    "dateInfo": [{
-                        "date": "213",
-                        "minPrice": 2342,
-                        "closingPrice": 12,
-                        "maxPrice": 234,
-                        "openingPrice": 1231
-                    }]
-                },
-                {
-                    "ticker": "TD",
-                    "dateInfo": [{
-                        "date": "12312",
-                        "minPrice": 1231,
-                        "closingPrice": 12312,
-                        "maxPrice": 1231,
-                        "openingPrice": 1231
-                    }]
-                }
-            ],
+            "stockInfo": [{
+                "ticker": "BANK",
+                "dateInfo": [{
+                    "date": "02/22/2022",
+                    "minPrice": 234523,
+                    "closingPrice": 1241,
+                    "maxPrice": 1234,
+                    "openingPrice": 1231
+                }]
+            }],
             "category": "finance"
         }
     ]

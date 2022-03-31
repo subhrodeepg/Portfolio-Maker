@@ -25,8 +25,9 @@ public class Portfolio {
     //REQUIRES: Stock does not already exist
     //MODIFIES: this
     //EFFECTS: Adds a new stock to stock list
-    public void addStock(Stock stockAdd) {
+    public void addStockToPortfolio(Stock stockAdd) {
         stockList.add(stockAdd);
+        EventLog.getInstance().logEvent(new Event("Stock has been added to portfolio."));
     }
 
     public Stock getStock(int index) {
@@ -56,6 +57,7 @@ public class Portfolio {
         for (Stock stock : stockList) {
             if (Objects.equals(stock.getTicker(), stockTicker)) {
                 stockList.remove(i);
+                EventLog.getInstance().logEvent(new Event("Stock has been deleted from portfolio."));
                 return true;
             }
             i++;

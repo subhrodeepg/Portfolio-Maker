@@ -21,6 +21,7 @@ public class PortfolioList {
     //EFFECTS: adds portfolio to portfolio list
     public void addPortfolio(Portfolio portfolioToAdd) {
         portfolioList.add(portfolioToAdd);
+        EventLog.getInstance().logEvent(new Event("New Portfolio has been created."));
     }
 
     //MODIFIES: this

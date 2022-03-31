@@ -33,7 +33,7 @@ public class PortfolioTest {
                     DailyData(90, 140, 165, 75, "01/09/2022");
             Stock stock1 = new Stock(new ArrayList<>(), "MSFT");
             stock1.addDailyData(dailyData1);
-            portfolio.addStock(stock1);
+            portfolio.addStockToPortfolio(stock1);
         }  catch (StockAlreadyExistsException e) {
             fail("Exception Not Caught");
         }
@@ -73,7 +73,7 @@ public class PortfolioTest {
                 DailyData(90, 140, 165, 75, "01/09/2022");
         Stock stock1 = new Stock(new ArrayList<>(), "MSFT");
         stock1.addDailyData(dailyData1);
-        portfolio.addStock(stock1);
+        portfolio.addStockToPortfolio(stock1);
         assertEquals(2, portfolio.getStockListLength());
         try{
             portfolio.confirmStockExists("MSFT");
@@ -137,7 +137,7 @@ public class PortfolioTest {
                 DailyData(90, 140, 165, 75, "01/09/2022");
         Stock stock1 = new Stock(new ArrayList<>(), "MSFT");
         stock1.addDailyData(dailyData1);
-        portfolio.addStock(stock1);
+        portfolio.addStockToPortfolio(stock1);
         assertEquals(2, portfolio.getStockListLength());
         try {
             portfolio.confirmStockExists("MSFT");
@@ -181,7 +181,7 @@ public class PortfolioTest {
                 DailyData(90, 140, 165, 75, "01/09/2022");
         Stock stock1 = new Stock(new ArrayList<>(), "MSFT");
         stock1.addDailyData(dailyData1);
-        portfolio.addStock(stock1);
+        portfolio.addStockToPortfolio(stock1);
         assertEquals("technology: AAPL, MSFT", portfolio.getAllStockTickers());
     }
 
@@ -201,7 +201,7 @@ public class PortfolioTest {
             fail();
         }
 
-        portfolio.addStock(stock);
+        portfolio.addStockToPortfolio(stock);
         assertEquals(2, portfolio.getStockListLength());
         try{
             portfolio.confirmStockExists("AAPL");
