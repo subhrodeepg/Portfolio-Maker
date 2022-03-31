@@ -11,7 +11,7 @@ stock performance over time; such as:
 
 I choose this project because I am interested in financial technologies, and I am an amateur investor. 
 
-##User Stories
+## User Stories
 
 - As a user, I want to create a portfolio
 - As a user, I want to add a stock to the portfolio
@@ -20,7 +20,7 @@ I choose this project because I am interested in financial technologies, and I a
 - As a user, I want to save my portfolios
 - As a user, I want to load in my portfolios from an external file
 
-##Phase 4: Task 2
+## Phase 4: Task 2
 Wed Mar 30 18:05:39 PDT 2022
 Stock has been added to portfolio.
 
@@ -57,7 +57,7 @@ Stock has been added to portfolio.
 Wed Mar 30 18:06:33 PDT 2022
 New Portfolio has been created.
 
-##Phase 4: Task 3
+## Phase 4: Task 3
 
 I would not change the design of my program if I had more time. I think the structure of my program is well-designed.
 The program is structured so that every class is contained as a collection within another class. The top of the 
