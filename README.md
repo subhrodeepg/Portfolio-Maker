@@ -56,3 +56,9 @@ Stock has been added to portfolio.
 
 Wed Mar 30 18:06:33 PDT 2022
 New Portfolio has been created.
+
+##Phase 4: Task 3
+
+I would not change the design of my program if I had more time. I think the structure of my program is well-designed.
+The program is structured so that every class is contained as a collection within another class. The top of the 
+hierarchy is PortfolioList. 
